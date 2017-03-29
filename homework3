@@ -1,0 +1,90 @@
+public class Homework3 {
+
+    public static void main(String[] args) {
+        String[][] board = new String[3][3];
+        BufferedReader br = null;
+        FileReader in = null;
+        try {
+            in = new FileReader("tictactoe.txt");
+            br = new BufferedReader(in);
+            String line = br.readLine();
+
+            int i = 0;
+            while (line != null) {
+                board[i] = line.split(",");
+                ++i;
+                line = br.readLine();
+            }
+            boolean firstRowMatch = (Objects.equals(board[0][0], board[0][1])) &&
+                    Objects.equals(board[0][1], board[0][2]);
+            if (firstRowMatch) {
+                System.out.println("wygraĹ‚ "+ board[0][0]);
+                return;
+            }
+            boolean secondRowMatch = (Objects.equals(board[1][0], board[1][1])) &&
+                    Objects.equals(board[1][1], board[1][2]);
+            if (secondRowMatch) {
+                System.out.println("wygraĹ‚ "+ board[1][0]);
+                return;
+            }
+            boolean thirdRowMatch = (Objects.equals(board[2][0], board[2][1])) &&
+                    Objects.equals(board[2][1], board[2][2]);
+            if (thirdRowMatch) {
+                System.out.println("wygraĹ‚ "+ board[2][0]);
+                return;
+            }
+
+
+            boolean firstColMatch = (Objects.equals(board[0][0], board[1][0])) &&
+                    Objects.equals(board[1][0], board[2][0]);
+            if (firstColMatch) {
+                System.out.println("wygraĹ‚ "+ board[0][0]);
+                return;
+            }
+            boolean secondColMatch = (Objects.equals(board[0][1], board[1][1])) &&
+                    Objects.equals(board[1][1], board[2][1]);
+            if (secondColMatch) {
+                System.out.println("wygraĹ‚ "+ board[0][1]);
+                return;
+            }
+            boolean thirdColMatch = (Objects.equals(board[0][2], board[1][2])) &&
+                    Objects.equals(board[1][2], board[2][2]);
+            if (thirdColMatch) {
+                System.out.println("wygraĹ‚ "+ board[0][2]);
+                return;
+            }
+
+            boolean firstDiagonalMatch = (Objects.equals(board[0][0], board[1][1])) &&
+                    Objects.equals(board[1][1], board[2][2]);
+            if (firstDiagonalMatch) {
+                System.out.println("wygraĹ‚ "+ board[0][0]);
+                return;
+            }
+            boolean secondDiagonalMatch = (Objects.equals(board[0][2], board[1][1])) &&
+                    Objects.equals(board[1][1], board[2][0]);
+            if (secondDiagonalMatch) {
+                System.out.println("wygraĹ‚ "+ board[0][2]);
+                return;
+            }
+            System.out.println("nikt nie wygraĹ‚");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
